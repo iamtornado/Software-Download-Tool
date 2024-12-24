@@ -33,15 +33,14 @@ A PowerShell script for downloading common software installers for offline insta
 ### Utilities
 - 7-Zip
 - Microsoft Edge
-- Lingxi
+- 网易灵犀办公
 
 ### Input Methods
-- Sogou Pinyin Input
-- Sogou Wubi Input
+- 搜狗输入法
+- 搜狗五笔输入法
 
 ### Runtime Components
-- Visual C++ Redistributable (x86)
-- Visual C++ Redistributable (x64)
+- Microsoft Visual C++ Redistributable 2015-2022 (x86/x64)
 
 ## 💻 Usage
 
@@ -164,4 +163,5 @@ For support, please:
 2. Review the winget package IDs
 3. Verify network connectivity
 4. Contact repository maintainer if issues persist
+5. send email to 1426693102@qq.com
 ```
