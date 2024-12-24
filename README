@@ -1,0 +1,167 @@
+﻿# Software Download Tool
+
+A PowerShell script for downloading common software installers for offline installation. This tool uses winget to fetch download URLs and automatically downloads the latest versions of specified software, making it easier to maintain an offline software repository.
+
+## 🚀 Features
+
+- ✨ Downloads software installers using winget
+- 📁 Creates organized folders for each software
+- 📥 Customizable file names for downloads
+- 📊 Shows download progress
+- 📝 Generates detailed log file
+- 📈 Provides download statistics in table format
+- 🔄 Automatic retry on failed downloads
+- 🎯 Supports custom file naming
+- 📦 Creates structured software package directory
+
+## 📋 Prerequisites
+
+- Windows 10/11
+- PowerShell 7.4.6 or higher
+- Winget package manager
+- Internet connection
+- Sufficient disk space in Downloads folder
+
+## 🎯 Supported Software
+
+### Communication
+- QQ
+- WeChat
+- WeCom
+- DingTalk
+
+### Utilities
+- 7-Zip
+- Microsoft Edge
+- Lingxi
+
+### Input Methods
+- Sogou Pinyin Input
+- Sogou Wubi Input
+
+### Runtime Components
+- Visual C++ Redistributable (x86)
+- Visual C++ Redistributable (x64)
+
+## 💻 Usage
+
+1. Clone this repository:
+```bash
+git clone https://github.com/YOUR_USERNAME/software-downloader.git
+cd software-downloader
+```
+
+2. Run the script:
+```powershell
+.\download_software.ps1
+```
+
+3. Check the Downloads\SoftwarePackages directory for downloaded installers
+
+## 📊 Output Example
+
+```
+================= Download Statistics =================
+
+Successfully downloaded software:
+
+Name           Version        Path
+----           -------        ----
+QQ             9.7.3         C:\Users\...\SoftwarePackages\QQ\QQ.exe
+WeChat         3.9.0         C:\Users\...\SoftwarePackages\WeChat\WeChatSetup.exe
+7-Zip          23.01         C:\Users\...\SoftwarePackages\7-Zip\7z.exe
+Edge           121.0.2277.83 C:\Users\...\SoftwarePackages\Edge\MicrosoftEdge_X64.exe
+DingTalk       7.0.50        C:\Users\...\SoftwarePackages\DingTalk\DingTalk.exe
+
+Summary:
+Total successful: 5
+Total failed: 0
+==================================================
+```
+
+## 📝 Log Files
+
+Log files are automatically generated for each run:
+
+- **Location**: `%TEMP%\IT_Service\software_download_YYYYMMDD_HHMMSS.log`
+- **Format**: Plain text with timestamp for each operation
+- **Content**: Includes all operations, errors, and download statistics
+
+## ⚙️ Configuration
+
+### Default Settings
+```powershell
+$config = @{
+    MaxRetries = 3              # Maximum download retry attempts
+    RetryDelaySeconds = 3       # Delay between retries
+    TimeoutSeconds = 300        # Download timeout
+    DownloadRoot = "..."        # Default download location
+}
+```
+
+### Customization Options
+- Modify software list in the script
+- Customize file names for downloads
+- Adjust retry and timeout settings
+- Change download directory structure
+
+## 🔍 Directory Structure
+
+```
+Downloads\SoftwarePackages\
+├── QQ\
+├── WeChat\
+├── WeCom\
+├── Lingxi\
+├── 7-Zip\
+├── Edge\
+├── DingTalk\
+├── SogouInput\
+└── VCRedist\
+    ├── x86\
+    └── x64\
+```
+
+## 🛠️ Error Handling
+
+The script includes comprehensive error handling:
+- Download retry mechanism
+- File integrity verification
+- Detailed error logging
+- Progress tracking
+- Status reporting
+
+## 🤝 Contributing
+
+This is a private repository. Please contact the repository owner for:
+- Reporting bugs
+- Suggesting enhancements
+- Contributing code
+- Requesting access
+
+## 📄 License
+
+Private use only. All rights reserved.
+
+## 🔗 Related Documentation
+
+- [Winget Documentation](https://learn.microsoft.com/en-us/windows/package-manager/winget/)
+- [PowerShell Documentation](https://learn.microsoft.com/en-us/powershell/)
+- [Windows Package Manager](https://github.com/microsoft/winget-cli)
+
+## ⚠️ Notes
+
+- This script is intended for internal use only
+- Ensure you have necessary permissions for software distribution
+- Keep the script updated with latest software IDs
+- Check winget regularly for package ID changes
+- Consider network bandwidth when downloading multiple packages
+
+## 📞 Support
+
+For support, please:
+1. Check the log files for error details
+2. Review the winget package IDs
+3. Verify network connectivity
+4. Contact repository maintainer if issues persist
+```
