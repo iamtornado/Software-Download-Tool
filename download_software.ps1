@@ -18,10 +18,11 @@ Software list:
 - 企业微信
 - 网易灵犀办公
 - 7-Zip
-- 搜狗输入法
+- 搜狗拼音输入法
 - 搜狗五笔输入法
 - Microsoft Edge
 - Microsoft Edge WebView2 Runtime
+- 全时云会议软件
 - 钉钉
 - Microsoft Visual C++ Redistributable 2015-2022 (x86/x64)
 
@@ -85,7 +86,7 @@ $config = @{
     RetryDelaySeconds = 3
     TimeoutSeconds = 300
     DownloadRoot = Join-Path $downloads 'SoftwarePackages'
-    SkipExisting = 1  # 新增: 1表示检���已存在文件并跳过，0表示总是下载
+    SkipExisting = 1  # Added: 1 means skip if file exists, 0 means always download
 }
 
 # Define software list to download
@@ -116,7 +117,7 @@ $software = @(
         FileName = "7zip.exe"
     },
     @{
-        Name = "搜狗输入法"
+        Name = "搜狗拼音输入法"
         Id = "Sogou.SogouInput"
         FileName = "sogou_pinyin.exe"
     },
@@ -134,6 +135,11 @@ $software = @(
         Name = "Microsoft Edge WebView2 Runtime"
         Id = "Microsoft.EdgeWebView2Runtime"
         FileName = "MicrosoftEdgeWebView2RuntimeInstallerX64.exe"
+    },
+    @{
+        Name = "全时云会议软件"
+        DirectUrl = "https://dle.quanshi.com/onemeeting/download/v2/G-Net_MeetNow_Setup.exe"
+        FileName = "G-Net_MeetNow_Setup.exe"
     }
     # @{
     #     Name = "DingTalk"
@@ -245,7 +251,8 @@ function Get-Software {
     param (
         [string]$Name,
         [string]$WingetId,
-        [string]$FileName  # Add parameter for custom filename
+        [string]$FileName,
+        [string]$DirectUrl
     )
 
     Write-Host "`nProcessing $Name..." -ForegroundColor Cyan
@@ -257,6 +264,23 @@ function Get-Software {
     }
 
     try {
+        if ($DirectUrl) {
+            # Direct URL download
+            Write-Host "Using direct download URL for $Name"
+            $outputPath = Join-Path $softwareDir $FileName
+            
+            if (Invoke-FileDownload -Url $DirectUrl -OutputPath $outputPath -Name $Name) {
+                $stats.Successful += @{
+                    Name = $Name
+                    Path = $outputPath
+                    Version = "From direct URL"
+                }
+            } else {
+                $stats.Failed += $Name
+            }
+            return
+        }
+
         # Get software version
         $version = Get-SoftwareVersion -WingetId $WingetId
 
@@ -341,7 +365,11 @@ Write-Host "`nStarting software downloads..." -ForegroundColor Yellow
 
 # Download regular software
 foreach ($item in $software) {
-    Get-Software -Name $item.Name -WingetId $item.Id -FileName $item.FileName
+    if ($item.DirectUrl) {
+        Get-Software -Name $item.Name -DirectUrl $item.DirectUrl -FileName $item.FileName
+    } else {
+        Get-Software -Name $item.Name -WingetId $item.Id -FileName $item.FileName
+    }
 }
 
 # Download VC++ Redistributable
