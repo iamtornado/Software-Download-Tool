@@ -1,4 +1,8 @@
-﻿# Software Download Tool
+﻿<div style="text-align: right; margin-bottom: 20px;">
+  <a href="README_zh.md" style="background-color: #4CAF50; color: white; padding: 8px 16px; text-align: center; text-decoration: none; display: inline-block; border-radius: 4px;">中文</a>
+</div>
+
+# Software Download Tool
 
 A PowerShell script for downloading common software installers for offline installation. This tool uses winget to fetch download URLs and automatically downloads the latest versions of specified software, making it easier to maintain an offline software repository.
 
@@ -16,8 +20,8 @@ A PowerShell script for downloading common software installers for offline insta
 
 ## 📋 Prerequisites
 
-- Windows 10/11
-- PowerShell 7.4.6 or higher
+- Windows 10/11;windows server 2016/2019/2022/2025
+- PowerShell 5.1 or higher
 - Winget package manager
 - Internet connection
 - Sufficient disk space in Downloads folder
@@ -130,17 +134,10 @@ The script includes comprehensive error handling:
 - Progress tracking
 - Status reporting
 
-## 🤝 Contributing
-
-This is a private repository. Please contact the repository owner for:
-- Reporting bugs
-- Suggesting enhancements
-- Contributing code
-- Requesting access
 
 ## 📄 License
 
-Private use only. All rights reserved.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🔗 Related Documentation
 
@@ -150,7 +147,6 @@ Private use only. All rights reserved.
 
 ## ⚠️ Notes
 
-- This script is intended for internal use only
 - Ensure you have necessary permissions for software distribution
 - Keep the script updated with latest software IDs
 - Check winget regularly for package ID changes
@@ -164,4 +160,16 @@ For support, please:
 3. Verify network connectivity
 4. Contact repository maintainer if issues persist
 5. send email to 1426693102@qq.com
-```
+
+
+## Author
+
+- Name: iamtornado
+- Website: https://github.com/iamtornado
+- Email: 1426693102@qq.com
+- My WeChat Qrcode:
+![alt text](images/作者微信二维码.png)
+- QQ group: 715152187
+![alt text](images/AI发烧友QQ群二维码裁剪版.png)
+- WeChat Official Account: AI发烧友
+![alt text](images/AI发烧友公众号宣传图片.png)

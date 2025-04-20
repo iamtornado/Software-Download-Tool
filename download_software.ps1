@@ -1,4 +1,29 @@
-﻿# Set encoding and error handling
+﻿<#
+.SYNOPSIS
+    Download common software installers for offline installation.
+
+.DESCRIPTION
+    This script downloads various commonly used software installers from official sources,
+    organizes them into separate folders, and saves them to the Downloads\SoftwarePackages directory.
+    It supports downloading via winget package manager or direct URLs.
+
+.PARAMETER None
+    This script currently does not accept parameters.
+
+.EXAMPLE
+    PS> .\download_software.ps1
+    Downloads all configured software packages.
+
+.NOTES
+    File Name      : download_software.ps1
+    Author         : iamtornado (1426693102@qq.com)
+    Prerequisite   : PowerShell 5.1 or higher, winget installed
+    Copyright      : (c) 2025 iamtornado. All rights reserved.
+    License        : MIT License
+    GitHub         : https://github.com/iamtornado/Automatically_download_commonly_used_software_installation_packages
+#>
+
+# Set encoding and error handling
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $ErrorActionPreference = 'Stop'
 
@@ -70,7 +95,7 @@ Write-Host "PowerShell Version: $($PSVersionTable.PSVersion)"
 Write-Host "Log file location: $logFile"
 
 # Check PowerShell version
-$requiredVersion = "7.4.6"
+$requiredVersion = "5.1"
 if ($PSVersionTable.PSVersion -lt [Version]$requiredVersion) {
     Write-Error "PowerShell $requiredVersion or higher is required"
     exit 1
@@ -405,4 +430,4 @@ Write-Host "Total failed: $($stats.Failed.Count)"
 Write-Host "`n==================================================" -ForegroundColor Green
 
 # Stop logging at script end
-Stop-Transcript 
+Stop-Transcript
